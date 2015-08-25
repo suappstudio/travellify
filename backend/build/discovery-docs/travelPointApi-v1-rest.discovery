@@ -1,0 +1,253 @@
+{
+ "kind": "discovery#restDescription",
+ "etag": "\"u_zXkMELIlX4ktyNbM2XKD4vK8E/hijVLcRTOCfbwszpE7im-B6bBjI\"",
+ "discoveryVersion": "v1",
+ "id": "travelPointApi:v1",
+ "name": "travelPointApi",
+ "version": "v1",
+ "description": "This is an API",
+ "ownerDomain": "backend.travellify.suappstudio.com",
+ "ownerName": "backend.travellify.suappstudio.com",
+ "icons": {
+  "x16": "http://www.google.com/images/icons/product/search-16.gif",
+  "x32": "http://www.google.com/images/icons/product/search-32.gif"
+ },
+ "protocol": "rest",
+ "baseUrl": "https://travellify-1034.appspot.com/_ah/api/travelPointApi/v1/",
+ "basePath": "/_ah/api/travelPointApi/v1/",
+ "rootUrl": "https://travellify-1034.appspot.com/_ah/api/",
+ "servicePath": "travelPointApi/v1/",
+ "batchPath": "batch",
+ "parameters": {
+  "alt": {
+   "type": "string",
+   "description": "Data format for the response.",
+   "default": "json",
+   "enum": [
+    "json"
+   ],
+   "enumDescriptions": [
+    "Responses with Content-Type of application/json"
+   ],
+   "location": "query"
+  },
+  "fields": {
+   "type": "string",
+   "description": "Selector specifying which fields to include in a partial response.",
+   "location": "query"
+  },
+  "key": {
+   "type": "string",
+   "description": "API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.",
+   "location": "query"
+  },
+  "oauth_token": {
+   "type": "string",
+   "description": "OAuth 2.0 token for the current user.",
+   "location": "query"
+  },
+  "prettyPrint": {
+   "type": "boolean",
+   "description": "Returns response with indentations and line breaks.",
+   "default": "true",
+   "location": "query"
+  },
+  "quotaUser": {
+   "type": "string",
+   "description": "Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters. Overrides userIp if both are provided.",
+   "location": "query"
+  },
+  "userIp": {
+   "type": "string",
+   "description": "IP address of the site where the request originates. Use this if you want to enforce per-user limits.",
+   "location": "query"
+  }
+ },
+ "auth": {
+  "oauth2": {
+   "scopes": {
+    "https://www.googleapis.com/auth/userinfo.email": {
+     "description": "View your email address"
+    }
+   }
+  }
+ },
+ "schemas": {
+  "CollectionResponse_TravelPoint": {
+   "id": "CollectionResponse_TravelPoint",
+   "type": "object",
+   "properties": {
+    "items": {
+     "type": "array",
+     "items": {
+      "$ref": "TravelPoint"
+     }
+    },
+    "nextPageToken": {
+     "type": "string"
+    }
+   }
+  },
+  "GeoPt": {
+   "id": "GeoPt",
+   "type": "object",
+   "properties": {
+    "latitude": {
+     "type": "number",
+     "format": "float"
+    },
+    "longitude": {
+     "type": "number",
+     "format": "float"
+    }
+   }
+  },
+  "TravelPoint": {
+   "id": "TravelPoint",
+   "type": "object",
+   "properties": {
+    "chiave": {
+     "type": "string",
+     "format": "int64"
+    },
+    "info": {
+     "type": "string"
+    },
+    "location": {
+     "$ref": "GeoPt"
+    }
+   }
+  }
+ },
+ "methods": {
+  "get": {
+   "id": "travelPointApi.get",
+   "path": "travelPoint/{chiave}",
+   "httpMethod": "GET",
+   "parameters": {
+    "chiave": {
+     "type": "string",
+     "required": true,
+     "format": "int64",
+     "location": "path"
+    }
+   },
+   "parameterOrder": [
+    "chiave"
+   ],
+   "response": {
+    "$ref": "TravelPoint"
+   },
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "insert": {
+   "id": "travelPointApi.insert",
+   "path": "travelPoint",
+   "httpMethod": "POST",
+   "request": {
+    "$ref": "TravelPoint",
+    "parameterName": "resource"
+   },
+   "response": {
+    "$ref": "TravelPoint"
+   },
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "list": {
+   "id": "travelPointApi.list",
+   "path": "travelPoint",
+   "httpMethod": "GET",
+   "parameters": {
+    "cursor": {
+     "type": "string",
+     "location": "query"
+    },
+    "limit": {
+     "type": "integer",
+     "format": "int32",
+     "location": "query"
+    }
+   },
+   "response": {
+    "$ref": "CollectionResponse_TravelPoint"
+   },
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "patch": {
+   "id": "travelPointApi.patch",
+   "path": "travelPoint/{chiave}",
+   "httpMethod": "PATCH",
+   "parameters": {
+    "chiave": {
+     "type": "string",
+     "required": true,
+     "format": "int64",
+     "location": "path"
+    }
+   },
+   "parameterOrder": [
+    "chiave"
+   ],
+   "request": {
+    "$ref": "TravelPoint"
+   },
+   "response": {
+    "$ref": "TravelPoint"
+   },
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "remove": {
+   "id": "travelPointApi.remove",
+   "path": "travelPoint/{chiave}",
+   "httpMethod": "DELETE",
+   "parameters": {
+    "chiave": {
+     "type": "string",
+     "required": true,
+     "format": "int64",
+     "location": "path"
+    }
+   },
+   "parameterOrder": [
+    "chiave"
+   ],
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "update": {
+   "id": "travelPointApi.update",
+   "path": "travelPoint/{chiave}",
+   "httpMethod": "PUT",
+   "parameters": {
+    "chiave": {
+     "type": "string",
+     "required": true,
+     "format": "int64",
+     "location": "path"
+    }
+   },
+   "parameterOrder": [
+    "chiave"
+   ],
+   "request": {
+    "$ref": "TravelPoint",
+    "parameterName": "resource"
+   },
+   "response": {
+    "$ref": "TravelPoint"
+   },
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  }
+ }
+}
