@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white"
+    android:paddingTop="8dp"
+    android:paddingBottom="8dp"
+    android:paddingLeft="8dp"
+    android:paddingRight="8dp"
+    android:weightSum="10"
+    android:orientation="horizontal" >
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        >
+
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/map_marker_blue"
+
+            ></ImageView>
+
+
+
+
+    </LinearLayout>
+
+
+
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:background="@android:color/darker_gray"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="7"
+        android:orientation="vertical"
+        >
+
+        <TextView
+            android:id="@+id/tv_popup_mappa_nome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Poste Italiane"
+            android:textColor="@color/primary_material_dark"
+            android:textSize="@dimen/abc_text_size_small_material"
+            android:textStyle="bold" />
+
+
+
+        <TextView
+            android:id="@+id/tv_popup_mappa_indirizzo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:hint="Indirizzo, num - cap"
+
+            android:textColor="@color/primary_material_dark"
+            android:textSize="@dimen/abc_text_size_small_material" />
+
+
+        <TextView
+            android:id="@+id/tv_popup_mappa_atm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:textColor="@color/material_blue_grey_800"
+            android:text="test"
+            android:textSize="@dimen/abc_text_size_small_material" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="2"
+        android:gravity="center"
+        android:layout_marginLeft="16dp"
+        android:orientation="vertical"
+        >
+
+        <TextView
+            android:id="@+id/tv_distance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/material_blue_grey_800"
+            android:textSize="@dimen/abc_text_size_small_material"
+
+            ></TextView>
+
+
+
+
+    </LinearLayout>
+
+
+</LinearLayout>
