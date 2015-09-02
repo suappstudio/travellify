@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         GeoPt loc = new GeoPt();
         loc.setLatitude(Float.valueOf(editLat.getText().toString()));
         loc.setLongitude(Float.valueOf(editLon.getText().toString()));
-        point.setLocation(new GeoPt());
+        point.setLocation(loc);
 
         point.setInfo("Test");
         new InsertPointTask().execute(point);
