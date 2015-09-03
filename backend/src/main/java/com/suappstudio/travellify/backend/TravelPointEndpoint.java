@@ -47,19 +47,19 @@ public class TravelPointEndpoint {
     /**
      * Returns the {@link TravelPoint} with the corresponding ID.
      *
-     * @param chiave the ID of the entity to be retrieved
+     * @param pointName the ID of the entity to be retrieved
      * @return the entity with the corresponding ID
      * @throws NotFoundException if there is no {@code TravelPoint} with the provided ID.
      */
     @ApiMethod(
             name = "get",
-            path = "travelPoint/{chiave}",
+            path = "travelPoint/{pointName}",
             httpMethod = ApiMethod.HttpMethod.GET)
-    public TravelPoint get(@Named("chiave") Long chiave) throws NotFoundException {
-        logger.info("Getting TravelPoint with ID: " + chiave);
-        TravelPoint travelPoint = ofy().load().type(TravelPoint.class).id(chiave).now();
+    public TravelPoint get(@Named("pointName") String pointName) throws NotFoundException {
+        logger.info("Getting TravelPoint with ID: " + pointName);
+        TravelPoint travelPoint = ofy().load().type(TravelPoint.class).id(pointName).now();
         if (travelPoint == null) {
-            throw new NotFoundException("Could not find TravelPoint with ID: " + chiave);
+            throw new NotFoundException("Could not find TravelPoint with ID: " + pointName);
         }
         return travelPoint;
     }
@@ -73,12 +73,12 @@ public class TravelPointEndpoint {
             httpMethod = ApiMethod.HttpMethod.POST)
     public TravelPoint insert(TravelPoint travelPoint) {
         // Typically in a RESTful API a POST does not have a known ID (assuming the ID is used in the resource path).
-        // You should validate that travelPoint.chiave has not been set. If the ID type is not supported by the
+        // You should validate that travelPoint.pointName has not been set. If the ID type is not supported by the
         // Objectify ID generator, e.g. long or String, then you should generate the unique ID yourself prior to saving.
         //
         // If your client provides the ID then you should probably use PUT instead.
         ofy().save().entity(travelPoint).now();
-        logger.info("Created TravelPoint with ID: " + travelPoint.getChiave());
+        logger.info("Created TravelPoint with ID: " + travelPoint.getPointName());
 
         return ofy().load().entity(travelPoint).now();
     }
@@ -86,19 +86,19 @@ public class TravelPointEndpoint {
     /**
      * Updates an existing {@code TravelPoint}.
      *
-     * @param chiave      the ID of the entity to be updated
+     * @param pointName   the ID of the entity to be updated
      * @param travelPoint the desired state of the entity
      * @return the updated version of the entity
-     * @throws NotFoundException if the {@code chiave} does not correspond to an existing
+     * @throws NotFoundException if the {@code pointName} does not correspond to an existing
      *                           {@code TravelPoint}
      */
     @ApiMethod(
             name = "update",
-            path = "travelPoint/{chiave}",
+            path = "travelPoint/{pointName}",
             httpMethod = ApiMethod.HttpMethod.PUT)
-    public TravelPoint update(@Named("chiave") Long chiave, TravelPoint travelPoint) throws NotFoundException {
+    public TravelPoint update(@Named("pointName") String pointName, TravelPoint travelPoint) throws NotFoundException {
         // TODO: You should validate your ID parameter against your resource's ID here.
-        checkExists(chiave);
+        checkExists(pointName);
         ofy().save().entity(travelPoint).now();
         logger.info("Updated TravelPoint: " + travelPoint);
         return ofy().load().entity(travelPoint).now();
@@ -107,18 +107,18 @@ public class TravelPointEndpoint {
     /**
      * Deletes the specified {@code TravelPoint}.
      *
-     * @param chiave the ID of the entity to delete
-     * @throws NotFoundException if the {@code chiave} does not correspond to an existing
+     * @param pointName the ID of the entity to delete
+     * @throws NotFoundException if the {@code pointName} does not correspond to an existing
      *                           {@code TravelPoint}
      */
     @ApiMethod(
             name = "remove",
-            path = "travelPoint/{chiave}",
+            path = "travelPoint/{pointName}",
             httpMethod = ApiMethod.HttpMethod.DELETE)
-    public void remove(@Named("chiave") Long chiave) throws NotFoundException {
-        checkExists(chiave);
-        ofy().delete().type(TravelPoint.class).id(chiave).now();
-        logger.info("Deleted TravelPoint with ID: " + chiave);
+    public void remove(@Named("pointName") String pointName) throws NotFoundException {
+        checkExists(pointName);
+        ofy().delete().type(TravelPoint.class).id(pointName).now();
+        logger.info("Deleted TravelPoint with ID: " + pointName);
     }
 
     /**
@@ -146,11 +146,11 @@ public class TravelPointEndpoint {
         return CollectionResponse.<TravelPoint>builder().setItems(travelPointList).setNextPageToken(queryIterator.getCursor().toWebSafeString()).build();
     }
 
-    private void checkExists(Long chiave) throws NotFoundException {
+    private void checkExists(String pointName) throws NotFoundException {
         try {
-            ofy().load().type(TravelPoint.class).id(chiave).safe();
+            ofy().load().type(TravelPoint.class).id(pointName).safe();
         } catch (com.googlecode.objectify.NotFoundException e) {
-            throw new NotFoundException("Could not find TravelPoint with ID: " + chiave);
+            throw new NotFoundException("Could not find TravelPoint with ID: " + pointName);
         }
     }
 }

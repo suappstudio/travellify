@@ -3,6 +3,7 @@ package com.suappstudio.travellify.backend.utils;
 import com.googlecode.objectify.Objectify;
 import com.googlecode.objectify.ObjectifyFactory;
 import com.googlecode.objectify.ObjectifyService;
+import com.suappstudio.travellify.backend.TravelPackage;
 import com.suappstudio.travellify.backend.TravelPoint;
 
 
@@ -20,7 +21,7 @@ public final class OfyService {
 
     static {
         factory().register(TravelPoint.class);
-//        factory().register(CheckIn.class);
+        factory().register(TravelPackage.class);
 //        factory().register(Offer.class);
 //        factory().register(Recommendation.class);
 //        factory().register(Place.class);

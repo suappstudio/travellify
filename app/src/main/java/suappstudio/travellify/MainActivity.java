@@ -12,10 +12,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.suappstudio.travellify.backend.travelPackageApi.model.TravelPackage;
 import com.suappstudio.travellify.backend.travelPointApi.model.GeoPt;
 import com.suappstudio.travellify.backend.travelPointApi.model.TravelPoint;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import suappstudio.travellify.utils.CloudUtils;
 import suappstudio.travellify.utils.TravellifyException;
@@ -30,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.insert_point);
+
         CloudUtils.build(this, null);
         editLat = (EditText) findViewById(R.id.et_lat);
         editLon = (EditText) findViewById(R.id.et_lon);
@@ -53,6 +57,17 @@ public class MainActivity extends AppCompatActivity {
 
         point.setInfo("Test");
         new InsertPointTask().execute(point);
+
+    }
+
+
+    private void insertPackage(){
+        TravelPackage travelPackage = new TravelPackage();
+        List<TravelPoint> points = new ArrayList<TravelPoint>();
+        points.add(createPoint("Punto 1", 41.837378f,12.437970f));
+        points.add(createPoint("Punto 2", 41.835871f,12.433550f));
+        travelPackage.setName("Package");
+        travelPackage.set("points",points);
 
     }
 
@@ -116,5 +131,14 @@ public class MainActivity extends AppCompatActivity {
      }
 
 
+    private TravelPoint createPoint(String name, float lat, float lon){
+        TravelPoint point = new TravelPoint();
+        GeoPt loc = new GeoPt();
+        loc.setLatitude(lat);
+        loc.setLongitude(lon);
+        point.setLocation(loc);
+        point.setInfo(name);
+        return point;
+    }
 
 }

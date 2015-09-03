@@ -10,17 +10,21 @@ import java.io.Serializable;
  * Created by Android Dragon on 19/08/2015.
  */
 @Entity
-public class TravelPoint implements Serializable {
+public class TravelPoint {
 
     @Id
-    private Long chiave;
+    private String pointName;
 
     private String info;
 
     private GeoPt location;
 
-    public Long getChiave() {
-        return chiave;
+    public String getPointName() {
+        return pointName;
+    }
+
+    public void setPointName(String pointName) {
+        this.pointName = pointName;
     }
 
     public GeoPt getLocation() {

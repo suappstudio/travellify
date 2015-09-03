@@ -13,8 +13,8 @@
         <servlet-class>com.google.api.server.spi.SystemServiceServlet</servlet-class>
         <init-param>
             <param-name>services</param-name>
-            <param-value>
-                com.suappstudio.travellify.backend.TravelPointEndpoint</param-value>
+            <param-value>com.suappstudio.travellify.backend.TravelPointEndpoint,
+                com.suappstudio.travellify.backend.TravelPackageEndpoint</param-value>
         </init-param>
     </servlet>
     <servlet-mapping>
